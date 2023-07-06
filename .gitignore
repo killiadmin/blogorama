@@ -1,0 +1,11 @@
+.DS_Store
+.dockerignore
+Dockerfile
+composer.phar
+docker-compose.yml
+data/
+.idea/
+note.txt
+composer.json
+composer.lock
+vendor/
