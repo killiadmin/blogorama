@@ -1,0 +1,25 @@
+<?php
+$title = 'Se connecter';
+?>
+
+<div class="bg-image d-flex justify-content-center p-3 text-center">
+    <img src="./assets/logo_01.png">
+</div>
+
+<form class="container d-flex flex-column w-50 mb-5">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Your mail</label>
+        <input type="text" class="form-control"  placeholder="my.adress@blogorama.fr" name="mail">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" placeholder="Mypass123..." name="password">
+    </div>
+    <button type="submit" class="btn btn-secondary" name="validate">Signin</button>
+
+    <br><br>
+    <div>
+        <p>You do not have an account ?</p>
+        <a href="signup" class="text-decoration-none text-secondary">Sign Up</a>
+    </div>
+</form>

@@ -11,20 +11,34 @@ $whoops->register();
 $router = new AltoRouter();
 
 //Map Router
-$router->map('GET', '/', 'index', 'index');
-$router->map('GET', '/contact', 'contact', 'contact');
+$router->map('GET', '/[i:id]', 'index', 'index');
+
+$router->map('GET', '/', 'login', 'login');
+$router->map('GET', '/signup', 'signup', 'signup');
+
+$router->map('GET', '/allPosts', 'allPosts', 'allPosts');
+$router->map('GET', '/post/[i:id]', 'post', 'post');
+$router->map('GET', '/writePost', 'writePost', 'writePost');
+$router->map('GET', '/updatePost', 'updatePost', 'updatePost');
+
 
 //Match Router
 $match = $router->match();
 
 if (is_array($match)){
     if (is_callable( $match['target'])) {
-        call_user_func_array( $match['target'], $match['params']);
+        call_user_func_array( $match['target'], $match['params']['id']);
     } else {
+        ob_start();
         $params = $match['target'];
         include "../app/vue/{$params}.vue.php";
+        $pageContent = ob_get_clean();
     }
 } else {
     //No route matched
+    ob_start();
     include '../app/vue/notFound.vue.php';
+    $pageContent = ob_get_clean();
 }
+
+include  '../app/vue/layouts/defaultLayout.php';
