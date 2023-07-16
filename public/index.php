@@ -17,17 +17,18 @@ $router->map('GET', '/', 'login', 'login');
 $router->map('GET', '/signup', 'signup', 'signup');
 
 $router->map('GET', '/allPosts', 'allPosts', 'allPosts');
-$router->map('GET', '/post/[i:id]', 'post', 'post');
+$router->map('GET', '/post/[i:id]/', 'post', 'post');
 $router->map('GET', '/writePost', 'writePost', 'writePost');
-$router->map('GET', '/updatePost', 'updatePost', 'updatePost');
+$router->map('GET', '/updatePost/[i:id]', 'updatePost', 'updatePost');
+$router->map('POST', '/processForm', 'processForm', 'processForm');
 
 
 //Match Router
 $match = $router->match();
 
 if (is_array($match)){
-    if (is_callable( $match['target'])) {
-        call_user_func_array( $match['target'], $match['params']['id']);
+    if (is_callable($match['target'])) {
+        call_user_func_array($match['target'], $match['params']['id']);
     } else {
         ob_start();
         $params = $match['target'];
