@@ -46,7 +46,10 @@
     <footer>
         <div class="text-center p-3 text-light" style="background-color: #3C4245;">
             Blogorama | © 2023 Copyright:
-            <a class="text-light text-decoration-none fw-bold" href="https://killianfilatre.fr">Killian Filâtre</a>
+            <a class="text-light text-decoration-none fw-bold" href="https://killianfilatre.fr">Killian Filâtre </a>
+            | You are
+            <a class="text-light text-decoration-none fw-bold" href="<?= $router->generate('menuAdmin')?>">Administrator </a>
+
         </div>
         <!-- Copyright -->
     </footer>

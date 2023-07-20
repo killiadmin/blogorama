@@ -1,6 +1,13 @@
 <?php
+/*define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));*/
+
+
+
 //Autoload from composer
 require '../vendor/autoload.php';
+
+require_once('../app/Model.php');
+require_once ('../app/controllers/Controller.php');
 
 //Package from display errors
 $whoops = new \Whoops\Run;
@@ -20,7 +27,8 @@ $router->map('GET', '/allPosts', 'allPosts', 'allPosts');
 $router->map('GET', '/post/[i:id]/', 'post', 'post');
 $router->map('GET', '/writePost', 'writePost', 'writePost');
 $router->map('GET', '/updatePost/[i:id]', 'updatePost', 'updatePost');
-$router->map('POST', '/processForm', 'processForm', 'processForm');
+$router->map('GET', '/menuAdmin', 'menuAdmin', 'menuAdmin');
+$router->map('POST', '/app/controllers/createUserController.php', 'createUser', 'createUser');
 
 
 //Match Router
@@ -31,8 +39,8 @@ if (is_array($match)){
         call_user_func_array($match['target'], $match['params']['id']);
     } else {
         ob_start();
-        $params = $match['target'];
-        include "../app/vue/{$params}.vue.php";
+        $target = $match['target'];
+        include "../app/vue/{$target}.vue.php";
         $pageContent = ob_get_clean();
     }
 } else {

@@ -2,17 +2,17 @@
 $title = 'Registration';
 ?>
 
-<div class="container p-3">
+<!--<div class="container p-3">
     <a href="/">
         <i style="color: #3C4245" class="fa-solid fa-arrow-left fa-2xl"></i>
     </a>
-</div>
+</div>-->
 
 <div class="bg-image d-flex justify-content-center text-center">
     <img src="./assets/logo_01.png">
 </div>
 
-<form class="container" method="POST" action="../app/vue/processForm" style="width: 600px;">
+<form class="container" method="POST" action="../app/controllers/createUserController.php" style="width: 600px;">
     <div class="mb-3">
         <label class="form-label" for="name">Name :</label>
         <input class="form-control" type="text" name="name" id="name" required>
@@ -50,7 +50,10 @@ $title = 'Registration';
         </div>
     </div>-->
 
-    <div class="d-flex flex-row-reverse">
+    <div class="d-flex justify-content-between">
+        <a href="/">
+            <i class="fa-solid fa-arrow-left fa-2xl" title="Return to login menu" style="color: #3C4245"></i>
+        </a>
         <button class="btn btn-secondary" type="submit" name="submit">Sign Up</button>
     </div>
 </form>
