@@ -1,19 +1,13 @@
 <?php
-require_once '../app/controllers/userController.php';
-require_once '../app/models/userModel.php';
-
 $title = 'Mode Administrator';
+$usersDesactivated = 0;
 
-$usersInstance = new Users();
-$users = $usersInstance->index();
-
-//Lignes en doublons
-
-/*echo '<pre>';
-var_dump($users);
-echo '</pre>';*/
+foreach ($usersRegistered ?? [] as $user){
+    if ($user['activated'] === '0') {
+        $usersDesactivated++;
+    }
+}
 ?>
-
 
 <div class="container">
     <h1 class="my-4">Dashboard</h1>
@@ -22,7 +16,7 @@ echo '</pre>';*/
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Users registered</h5>
-                    <p class="card-text">Total : 100</p>
+                    <p class="card-text">Total : <?= count($usersRegistered ?? []) ?></p>
                 </div>
             </div>
         </div>
@@ -30,7 +24,7 @@ echo '</pre>';*/
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Articles written</h5>
-                    <p class="card-text">Total : 50</p>
+                    <p class="card-text">Total : <?= count($postsCreate ?? []) ?? []?></p>
                 </div>
             </div>
         </div>
@@ -50,7 +44,7 @@ echo '</pre>';*/
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Users desactivate</h5>
-                    <p class="card-text">Total : 100</p>
+                    <p class="card-text">Total : <?= $usersDesactivated ?></p>
                 </div>
             </div>
         </div>
@@ -88,13 +82,15 @@ echo '</pre>';*/
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($usersRegistered ?? [] as $user):
+                $userStatus = ($user['activated'] == 0) ? 'Desactivated' : 'Activated';
+                ?>
                 <tr>
                     <td><input type="checkbox"></td>
                     <td><?= $user['name']; ?></td>
                     <td><?= $user['username']; ?></td>
                     <td><?= $user['mail']; ?></td>
-                    <td class="d-flex justify-content-between">Activate
+                    <td class="d-flex justify-content-between"><?= $userStatus ?>
                         <button class="btn btn-danger">Desactivate</button>
                     </td>
                 </tr>
