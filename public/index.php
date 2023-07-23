@@ -7,6 +7,8 @@ require_once ('../app/models/userModel.php');
 require_once ( '../app/controllers/userController.php');
 require_once ('../app/models/postModel.php');
 require_once ( '../app/controllers/postController.php');
+require_once ('../app/models/commentModels.php');
+require_once ('../app/controllers/commentController.php');
 
 require_once ('instances.php');
 
@@ -43,6 +45,7 @@ if (is_array($match)){
         $target = $match['target'];
         $usersRegistered = callInstanceUsers();
         $postsCreate = callInstancePosts();
+        $commentsCreate = callInstanceComments();
         include "../app/vue/{$target}.vue.php";
         $pageContent = ob_get_clean();
     }

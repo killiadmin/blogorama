@@ -10,7 +10,6 @@
     <link rel="stylesheet"  href="/css/style.css">
 </head>
 <body>
-
 <!-- Bloc Header-->
 <header>
     <nav class="navbar navbar-expand-lg" style="background-color: #3C4245">
