@@ -42,4 +42,11 @@ abstract class Model
         $query->execute();
         return $query->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function execArray($stmt, $array = [])
+    {
+        $req = $this->_connexion->prepare($stmt);
+        $req->execute($array);
+        return $req->fetch();
+    }
 }

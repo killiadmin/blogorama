@@ -1,10 +1,30 @@
 <?php
-
+session_start();
 class Users
 {
     public function index()
     {
         $this->User = new User();
         return $this->User->getAll();
+    }
+
+    public function signUpMethod ()
+    {
+        if(isset($_POST['validateSignUp'])){
+            if(!empty($_POST["username"]) && !empty($_POST["name"]) && !empty($_POST["quote"]) && !empty($_POST["mail"]) &&!empty($_POST["password"])) {
+                $user_name = htmlspecialchars($_POST["name"]);
+                $user_username = htmlspecialchars($_POST["username"]);
+                $user_quote = htmlspecialchars($_POST["quote"]);
+                $user_mail = htmlspecialchars($_POST["mail"]);
+                $user_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+                $this->User = new User();
+                $this->User->createUser($user_name, $user_username, $user_quote, $user_mail, $user_password);
+
+                header("Location: /50");
+            } else {
+                echo 'Le formulaire n\'est pas complet';
+            }
+        }
     }
 }

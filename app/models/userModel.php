@@ -1,18 +1,20 @@
 <?php
 
-class User extends Model {
-    public function __construct() {
+class User extends Model
+{
+    public function __construct()
+    {
         $this->table = 'users';
         $this->getConnection();
     }
 
-    public function testConnection()
+    public function createUser($name, $username, $quote, $mail, $password)
     {
-        try {
-            $this->getConnection();
-            echo "Connexion à la base de données réussie !";
-        } catch (PDOException $exception) {
-            echo "Erreur de connexion à la base de données : " . $exception->getMessage();
-        }
+        $stmt = 'INSERT INTO users (name, username, quote, mail, password) VALUES (?, ?, ?, ?, ?)';
+        /*$date = date("Y-m-d H:i:s");*/
+
+        $dataRegister = [ $name, $username, $quote, $mail, $password];
+        return $this->execArray($stmt, $dataRegister);
     }
 }
+

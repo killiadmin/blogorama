@@ -24,7 +24,7 @@ $router = new AltoRouter();
 $router->map('GET', '/[i:id]', 'index', 'index');
 
 $router->map('GET', '/', 'login', 'login');
-$router->map('GET', '/signup', 'signup', 'signup');
+$router->map('GET|POST', '/signup', 'signup', 'signup');
 
 $router->map('GET', '/allPosts', 'allPosts', 'allPosts');
 $router->map('GET', '/post/[i:id]/', 'post', 'post');
@@ -46,6 +46,7 @@ if (is_array($match)){
         $usersRegistered = callInstanceUsers();
         $postsCreate = callInstancePosts();
         $commentsCreate = callInstanceComments();
+        callInstanceForCreateUser();
         include "../app/vue/{$target}.vue.php";
         $pageContent = ob_get_clean();
     }
