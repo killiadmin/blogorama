@@ -4,7 +4,7 @@ class User extends Model
 {
     public function __construct()
     {
-        $this->table = 'users';
+        $this->ta /ble = 'users';
         $this->getConnection();
     }
 
@@ -16,7 +16,7 @@ class User extends Model
 
     public function createUser($name, $username, $quote, $mail, $password)
     {
-        $stmt = 'INSERT INTO users (name, username, quote, mail, password) VALUES (?, ?, ?, ?, ?, ?)';
+        $stmt = 'INSERT INTO users (name, username, quote, mail, password, dateCreate) VALUES (?, ?, ?, ?, ?, ?)';
         $date = date("Y-m-d H:i:s");
 
         $dataRegister = [ $name, $username, $quote, $mail, $password, $date];
