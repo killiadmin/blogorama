@@ -15,8 +15,17 @@ class Users
                 $user_name = htmlspecialchars($_POST["name"]);
                 $user_username = htmlspecialchars($_POST["username"]);
                 $user_quote = htmlspecialchars($_POST["quote"]);
-                $user_mail = htmlspecialchars($_POST["mail"]);
+                $user_mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
                 $user_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+                if ($user_mail === false){
+                    echo 'L\'adresse mail n\'est pas valide';
+                }
+
+                if ($this->User->isEmailTaken($user_mail)) {
+                    echo 'Cette adresse e-mail est déjà associée à un compte.';
+                    return;
+                }
 
                 $this->User = new User();
                 $this->User->createUser($user_name, $user_username, $user_quote, $user_mail, $user_password);
