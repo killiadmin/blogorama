@@ -2,13 +2,13 @@
 //Autoload from composer
 require '../vendor/autoload.php';
 
-require_once('../app/Model.php');
-require_once ('../app/models/userModel.php');
-require_once ( '../app/controllers/userController.php');
-require_once ('../app/models/postModel.php');
-require_once ( '../app/controllers/postController.php');
-require_once ('../app/models/commentModels.php');
-require_once ('../app/controllers/commentController.php');
+require_once '../app/Model.php';
+require_once '../app/models/userModel.php';
+require_once  '../app/controllers/userController.php';
+require_once '../app/models/postModel.php';
+require_once '../app/controllers/postController.php';
+require_once '../app/models/commentModels.php';
+require_once '../app/controllers/commentController.php';
 
 require_once ('instances.php');
 

@@ -2,17 +2,35 @@
 
 class User extends Model
 {
+    /**
+     * Construction method for the users table
+     */
     public function __construct()
     {
-        $this->ta /ble = 'users';
+        $this->table = 'users';
         $this->getConnection();
     }
 
+    /**
+     * Method to check if an email already exists in the db
+     * @param $mail
+     * @return mixed
+     */
     public function isEmailTaken ($mail)
     {
         $stmt = 'SELECT mail FROM users WHERE mail = ?';
         return $this->execArray($stmt, array($mail));
     }
+
+    /**
+     * Method to create a user in the db
+     * @param $name
+     * @param $username
+     * @param $quote
+     * @param $mail
+     * @param $password
+     * @return mixed
+     */
 
     public function createUser($name, $username, $quote, $mail, $password)
     {
@@ -21,6 +39,16 @@ class User extends Model
 
         $dataRegister = [ $name, $username, $quote, $mail, $password, $date];
         return $this->execArray($stmt, $dataRegister);
+    }
+
+    public function testConnection()
+    {
+        try {
+            $this->getConnection();
+            echo "Connexion à la base de données réussie !";
+        } catch (PDOException $exception) {
+            echo "Erreur de connexion à la base de données : " . $exception->getMessage();
+        }
     }
 }
 

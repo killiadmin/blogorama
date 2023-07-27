@@ -2,11 +2,21 @@
 session_start();
 class Users
 {
+    /**
+     * Method to return all users saved in the db
+     * @return mixed
+     */
+
     public function index()
     {
         $this->User = new User();
         return $this->User->getAll();
     }
+
+    /**
+     * Method to insert a user into the users table. We check the email if it is already used by another user in the db
+     * @return void
+     */
 
     public function signUpMethod ()
     {

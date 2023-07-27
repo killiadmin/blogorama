@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * General model with containing information from the db as well as some selection methods
+ */
 abstract class Model
 {
     private $host = '127.0.0.1';
@@ -15,6 +18,11 @@ abstract class Model
     public $table;
     public $id;
 
+    /**
+     * Method to connect to the database in PDO
+     * @return void
+     */
+
     public function getConnection()
     {
         $this->_connexion = null;
@@ -27,6 +35,10 @@ abstract class Model
         }
     }
 
+    /**
+     * Method to select all data in a table
+     * @return mixed
+     */
     public function getAll()
     {
         $sql = "SELECT DISTINCT * FROM " . $this->table;
@@ -35,6 +47,10 @@ abstract class Model
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Method allowing to select a particular data by specifying its id
+     * @return mixed
+     */
     public function getOne()
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE id=" . $this->id;
@@ -43,6 +59,12 @@ abstract class Model
         return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
+    /**
+     *  Method for executing a query by providing it with an array of data
+     * @param $stmt
+     * @param $array
+     * @return mixed
+     */
     public function execArray($stmt, $array = [])
     {
         $req = $this->_connexion->prepare($stmt);
