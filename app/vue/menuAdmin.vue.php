@@ -24,7 +24,7 @@ foreach ($usersRegistered ?? [] as $user){
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Articles written</h5>
-                    <p class="card-text">Total : <?= count($postsCreate ?? []) ?? []?></p>
+                    <p class="card-text">Total : <?= count($postsCreate ?? [])?></p>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@ foreach ($usersRegistered ?? [] as $user){
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Top article</h5>
-                    <p class="card-text">Total : 200</p>
+                    <p class="card-text">Total : Premier article</p>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ foreach ($usersRegistered ?? [] as $user){
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Comments create</h5>
-                    <p class="card-text">Total : 50</p>
+                    <p class="card-text">Total : <?= count($commentsCreate ?? [])?></p>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@ foreach ($usersRegistered ?? [] as $user){
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Top user</h5>
-                    <p class="card-text">Total : 200</p>
+                    <p class="card-text">Total : killian filatre</p>
                 </div>
             </div>
         </div>
@@ -91,7 +91,15 @@ foreach ($usersRegistered ?? [] as $user){
                     <td><?= $user['username']; ?></td>
                     <td><?= $user['mail']; ?></td>
                     <td class="d-flex justify-content-between"><?= $userStatus ?>
-                        <button class="btn btn-danger">Desactivate</button>
+                        <?php if ($user['activated'] == 1) { ?>
+                            <button class="btn btn-danger" style="width: 105px;">Desactivate</button>
+                            <?php
+                        } else { ?>
+                            <button class="btn btn-success" style="width: 105px;">Activate</button>
+                            <?php
+                        }
+                        ?>
+
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -41,6 +41,13 @@ class User extends Model
         return $this->execArray($stmt, $dataRegister);
     }
 
+    public function checkInfosUser($name, $username, $mail)
+    {
+        $stmt = 'SELECT id, name, username, mail FROM users WHERE name = ? && username = ? && mail = ?';
+        $checkDataRegister = [ $name, $username, $mail ];
+        return $this->execArray($stmt, $checkDataRegister);
+    }
+
     public function testConnection()
     {
         try {

@@ -1,6 +1,6 @@
 <?php
 session_start();
-class Users
+class Users extends Controller
 {
     /**
      * Method to return all users saved in the db
@@ -9,7 +9,8 @@ class Users
 
     public function index()
     {
-        $this->User = new User();
+        $this->loadModel('User');
+        /*    $this->User = new User();*/
         return $this->User->getAll();
     }
 
@@ -37,7 +38,15 @@ class Users
 
                 $this->User->createUser($user_name, $user_username, $user_quote, $user_mail, $user_password);
 
-                header("Location: /50");
+                $usersInfos = $this->User->checkInfosUser($user_name, $user_username, $user_mail);
+
+                $_SESSION['auth'] = true;
+                $_SESSION['id'] = $usersInfos['id'];
+                $_SESSION['name'] = $usersInfos['name'];
+                $_SESSION['username'] = $usersInfos['username'];
+                $_SESSION['mail'] = $usersInfos['mail'];
+
+                header("Location: /".$usersInfos['id']);
             } else {
                 echo 'Le formulaire n\'est pas complet';
             }

@@ -3,6 +3,7 @@
 require '../vendor/autoload.php';
 
 require_once '../app/Model.php';
+require_once '../app/Controller.php';
 require_once '../app/models/userModel.php';
 require_once  '../app/controllers/userController.php';
 require_once '../app/models/postModel.php';

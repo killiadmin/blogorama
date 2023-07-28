@@ -5,7 +5,7 @@ $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $parse_url = parse_url($url);
 $postId = basename($parse_url['path']);
 
-foreach ($postsCreate ?? [] as $post):
+foreach ($postsCreate as $post):
     if ($postId === $post['id']) {
         foreach ($usersRegistered ?? [] as $user):
             if ($user['id'] === $post['idUserAssociated']) {

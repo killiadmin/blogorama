@@ -15,9 +15,10 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #3C4245">
         <div class="container-fluid p-3">
             <div class="collapse navbar-collapse justify-content-center fs-2 ">
+                <?php if(isset($_SESSION['id']) && $_SESSION['id']) {?>
                 <ul class="navbar-nav gap-4 testBorder">
                     <li class="nav-item">
-                        <a class="nav-link active text-light" href="<?= $router->generate('index', ['id' => 30])?>">My home</a>
+                        <a class="nav-link active text-light" href="<?= $router->generate('index', ['id' => $_SESSION['id']])?>">My home</a>
                     </li>
                     <li class="nav-item">
                         <a class="text-monospace nav-link text-light" href="<?= $router->generate('allPosts')?>">Blogo-space</a>
@@ -28,6 +29,9 @@
                     <li class="nav-item">
                         <a class="text-monospace nav-link text-light" href="<?= $router->generate('login')?>">Sign out</a>
                     </li>
+                    <?php
+                }
+                ?>
                 </ul>
             </div>
         </div>
@@ -46,8 +50,10 @@
         <div class="text-center p-3 text-light" style="background-color: #3C4245;">
             Blogorama | © 2023 Copyright:
             <a class="text-light text-decoration-none fw-bold" href="https://killianfilatre.fr">Killian Filâtre </a>
+            <?php if(isset($_SESSION['id']) && $_SESSION['id']) {?>
             | You are
             <a class="text-light text-decoration-none fw-bold" href="<?= $router->generate('menuAdmin')?>">Administrator </a>
+            <?php } ?>
 
         </div>
         <!-- Copyright -->

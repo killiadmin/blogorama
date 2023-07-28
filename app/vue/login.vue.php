@@ -6,6 +6,12 @@ $title = 'Sign In';
     <img src="./assets/logo_01.png">
 </div>
 
+<?php if (isset($_SESSION['id']) && $_SESSION['id']) {
+    $_SESSION = [];
+    session_destroy();
+}
+?>
+
 <form class="container d-flex flex-column w-50 mb-5">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Your mail</label>
